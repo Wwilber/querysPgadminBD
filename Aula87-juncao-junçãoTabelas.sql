@@ -212,5 +212,8 @@ SELECT * FROM clientes NATURAL JOIN profissoes;
 
 -- O único campo comum entre as duas tabelas é o campo 'id'. Desta forma, veja que o resultado está errado, já que João Pereira e Mário Pirez tem a mesma profissão... Esta junção só 'funciona' bem se os campos chaves (onde acontece os relacionamentos) tiverem o mesmo nome em ambas as tab
 
-
-
+-- WHERE DE VÁRIAS TABELAS:
+SELECT pedb.cod_pedido AS "NÚMERO DO PEDIDO", prodb.nome_produto AS "PRODUTO", prodb.preco, prodb.descricao, pedb.qtde AS "QUANTIDADE", clib.nome_cliente AS "NOME DO CLIENTE", clib.sobrenome_cliente AS "SOBRENOME" 
+FROM pedidosb AS pedb, produtosb AS prodb, clientesb AS clib  
+WHERE pedb.cod_pedido=prodb.cod_produto and
+pedb.cod_cliente=clib.cod_cliente;
