@@ -62,17 +62,25 @@ INSERT INTO produtos (nome_prod, id_fabricante, qtde, id_tipo) VALUES ('WII 120 
 
 -- SELECT COM AGRUPAMENTO:
 
+----------------------------------------------------- SELECT COM WHERE: ---------------------------------------------------------------------- 
 SELECT pr.id_prod AS "CÓDIGO DO PRODUTO", pr.nome_prod AS "NOME DO PRODUTO", fab.nome_fabr AS "FABRICANTE", 
-tp.nome_tip AS "TIPO DO PRODUTO", pr.qtde 
+tp.nome_tip AS "TIPO DO PRODUTO", pr.qtde AS "QUANTIDADE DE PRODUTOS" 
 FROM produtos AS pr, fabricantes AS fab, tipos AS tp
 WHERE id_fabricante=id_fabr AND id_tipo=id_tip;
 
--- ORDER BY:
+----------------------------------------------------- SELECT COM WHERE E ORDER BY - do menor para o maior: ----------------------------------------------------------
 SELECT pr.id_prod AS "CÓDIGO DO PRODUTO", pr.nome_prod AS "NOME DO PRODUTO", fab.nome_fabr AS "FABRICANTE", 
 tp.nome_tip AS "TIPO DO PRODUTO", pr.qtde 
 FROM produtos AS pr, fabricantes AS fab, tipos AS tp
 WHERE id_fabricante=id_fabr AND id_tipo=id_tip 
-ORDER BY pr.qtde;
+ORDER BY pr.qtde ASC;
+
+----------------------------------------------------- SELECT COM WHERE E ORDER BY - do maior para o menor: ----------------------------------------------------------
+SELECT pr.id_prod AS "CÓDIGO DO PRODUTO", pr.nome_prod AS "NOME DO PRODUTO", fab.nome_fabr AS "FABRICANTE", 
+tp.nome_tip AS "TIPO DO PRODUTO", pr.qtde 
+FROM produtos AS pr, fabricantes AS fab, tipos AS tp
+WHERE id_fabricante=id_fabr AND id_tipo=id_tip 
+ORDER BY pr.qtde DESC;
 
 SELECT pr.id_prod AS "CÓDIGO DO PRODUTO", pr.nome_prod AS "NOME DO PRODUTO", fab.nome_fabr AS "FABRICANTE", 
 tp.nome_tip AS "TIPO DO PRODUTO", pr.qtde 
