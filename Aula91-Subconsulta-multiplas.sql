@@ -1,0 +1,33 @@
+-- SUBCONSULTAS: aula 20 do ultrabook:
+-- CREATE DATABASE subconsulta;
+
+-- CRIAÇÃO DAS TABELAS:
+
+-- DDL - DATA DEFINITION LANGUAGE: - CREATE; - ALTER; - DROP:
+CREATE TABLE escritorios(
+	id SERIAL PRIMARY KEY,
+	pais VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE funcionarios(
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(30) NOT NULL,
+	sobrenome VARCHAR(30) NOT NULL,
+	id_esc INT REFERENCES escritorios(id)
+);
+
+CREATE TABLE pagamentos(
+	id SERIAL PRIMARY KEY,
+	id_funcionario INT REFERENCES funcionarios(id) NOT NULL,
+	salario DECIMAL(8,2) NOT NULL,
+	data DATE NOT NULL
+ );
+
+-- DML - DATA MANIPULATION LANGUAGE: - INSERT; - UPDATE; - DELETE:
+-- UPDATE:
+
+
+
+
+-- DQL - DATA QUERY LANGUAGE: - SELECT:
+
