@@ -54,11 +54,50 @@ ALTER TABLE atores ALTER COLUMN nome SET NOT NULL;
 
 -- consulta usando sql:
 SELECT * FROM information_schema.columns WHERE table_name ='atores';
+SELECT * FROM information_schema.columns;
+
 
 CREATE TABLE filme(
 	id SERIAL PRIMARY KEY,
 	titulo VARCHAR(45) NOT NULL,
 	id_genero INT REFERENCES genero(id) NOT NULL
 );
+
+ALTER TABLE filme RENAME TO filmes;
+
+CREATE TABLE atores_filmes(
+	id SERIAL PRIMARY KEY,
+	id_atores INT REFERENCES atores(id) NOT NULL,
+	id_filmes INT REFERENCES filmes(id) NOT NULL,
+	valor DECIMAL(8,2) NOT NULL
+);
+CREATE TABLE dvds(
+	id SERIAL PRIMARY KEY,
+	id_filmes INT REFERENCES filmes(id) NOT NULL,
+	quantidade INT NOT NULL
+);
+
+CREATE TABLE clientes(
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(45) NOT NULL,
+	sobrenome VARCHAR(45) NOT NULL,
+	telefone VARCHAR(15) NOT NULL,
+	endereco VARCHAR(45) NOT NULL	
+);
+
+CREATE TABLE emprestimos(
+	id SERIAL PRIMARY KEY,
+	date DATE NOT NULL,
+	id_cliente INT REFERENCES clientes(id) NOT NULL
+);
+
+CREATE TABLE filme_emprestimo(
+	id SERIAL PRIMARY KEY,
+	id_emprestimo INT REFERENCES emprestimo(id) NOT NULL,
+	id_dvd INT REFERENCES 
+)
+
+
+
 
 -- DML - Data Manipulation Language(Linguagem de Manipulação de Dados): - INSERT, - UPDATE, - DELETE: 
