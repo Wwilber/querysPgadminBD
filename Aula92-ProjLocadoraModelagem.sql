@@ -30,5 +30,35 @@ CREATE DATABASE locadoravideo;
 -- ALTERAÇÃO DO NOME DO BANCO DE DADOS:
 ALTER DATABASE "locadoravideo" RENAME TO "locadoraVideo";
 
+-- CRIAÇÃO DAS TABELAS DO BANCO DE DADOS locadoraVideo:
+
+CREATE TABLE genero(
+	id SERIAL PRIMARY KEY,
+	genero VARCHAR(45)
+);
+
+ALTER TABLE genero ALTER COLUMN genero SET NOT NULL;
+
+CREATE TABLE atores(
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(45)
+);
+
+ALTER TABLE atores ALTER COLUMN nome SET NOT NULL;
 
 
+-- DQL - DATA QUERY LANGUAGE(Linguagem de Consulta de Dados): - SELECT:
+
+-- comando psql para ver a estrutura de uma tabela: 
+\d nome_da_tabela = EXEMPLO: \d atores; 
+
+-- consulta usando sql:
+SELECT * FROM information_schema.columns WHERE table_name ='atores';
+
+CREATE TABLE filme(
+	id SERIAL PRIMARY KEY,
+	titulo VARCHAR(45) NOT NULL,
+	id_genero INT REFERENCES genero(id) NOT NULL
+);
+
+-- DML - Data Manipulation Language(Linguagem de Manipulação de Dados): - INSERT, - UPDATE, - DELETE: 
