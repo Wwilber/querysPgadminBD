@@ -1,20 +1,64 @@
 package jpostgresql;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class Utils {
 	
 	static Scanner teclado = new Scanner(System.in);
 	
-	public static void conectar() {
-		System.out.println("Conectando..."); 
-	}
+	//conexão com o banco de dados:
+	public static Connection conectar() {
+		
+		//instânciado o método Properties:	
+		Properties props = new Properties();
+		//acessar o usuário wilber e senha no postgresql:	
+		props.setProperty("user", "wilber");
+		props.setProperty("password", "Creci#006799");
+		//sem criptografia:
+		props.setProperty("ssl", "false");
+		//criação de uma String para a url do servidor do banco de dados:
+		String URL_SERVIDOR = "jdbc:postgresql://localhost:5432/jpostgresql";	
 	
-	public static void desconectar() {
-		System.out.println("desconectando...");
+		try {
+			return DriverManager.getConnection(URL_SERVIDOR, props);	
+		
+		}catch(Exception e ) {
+			e.printStackTrace();
+			if(e instanceof ClassNotFoundException) {
+				System.err.println("Verifique o driver de conexão");
+			}else {
+				System.err.println("Verifique se o servidor está ativo");
+			}
+			System.exit(-42);
+			return null;
+		}
+	}
+	public static void desconectar(Connection conn) {
+		if(conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	public static void listar() {
-		System.out.println("Listando produtos...");
+		String BUSCAR_TODOS = "SELECT * FROM produtos";
+		
+		try {
+			Connection conn = conectar();
+			PreparedStatement produtos = conn.prepareStatement(BUSCAR_TODOS);
+			
+		}catch(Exception e ) {
+			e.printStackTrace();
+			System.err.println("Erro buscando todos os produtos!!!!");
+			System.exit(-42);
+		}
 	}
 	
 	public static void inserir() {
